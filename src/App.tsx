@@ -1,26 +1,22 @@
 import { useState, useRef } from "react";
 import "./App.css";
+import Repeticiones from "./components/Repeticiones";
+import BotonSerie from "./components/BotonSerie";
+import PesoInput from "./components/pesoInput";
 
 function App() {
   const [countSeries, setCountSeries] = useState(1);
   const [countRepes, setCountRepes] = useState(1);
-  const nombreRef = useRef<HTMLInputElement>(null);
-  const pesoRef = useRef<HTMLInputElement>(null);
-  const [countSerie, setCountSerie] = useState({
-    ejercicio: "Ejercicio 1" as string,
-    peso: 1 as number,
-    series: 1 as number,
-    repeticiones: 1 as number,
-  });
+  var valoresEjercicio: any[] = [];
+  const nombreRef = useRef<HTMLInputElement | null>(null);
+  const pesoRef = useRef<HTMLInputElement | null>(null);
+
   function addSerie() {
-    setCountSerie({
-      ...countSerie,
-      ejercicio: nombreRef?.current?.value || "Ejercicio 1",
-      peso: pesoRef?.current?.value || 1,
-      series: countSeries,
-      repeticiones: countRepes,
-    });
-    console.log(countSerie);
+    valoresEjercicio[0] = nombreRef.current?.value;
+    valoresEjercicio[1] = pesoRef.current?.value;
+    valoresEjercicio[2] = countSeries;
+    valoresEjercicio[3] = countRepes;
+    console.log(valoresEjercicio);
   }
 
   return (
@@ -36,12 +32,11 @@ function App() {
             type="text"
             defaultValue={"Ejercicio 1"}
           />
-          <label htmlFor="pesoEjercicio">Peso</label>
-          <input
-            id="pesoEjercicio"
-            ref={pesoRef}
-            type="number"
+          <PesoInput
+            pesoRef={pesoRef}
             defaultValue={1}
+            texto={"Peso actual"}
+            id={"pesoEjercicio"}
           />
           <label htmlFor="seriesEjercicio">Serie actual: {countSeries}</label>
           <div className="df ma gp-1">
@@ -52,25 +47,16 @@ function App() {
             >
               -
             </button>
-            <button
-              onClick={() => {
-                countSeries < 20 ? setCountSeries(countSeries + 1) : null;
-                addSerie();
-              }}
-            >
-              {" "}
-              +{" "}
-            </button>
+            <BotonSerie
+              countSeries={countSeries}
+              setCountSeries={setCountSeries}
+              max={20}
+              valorOperar={1}
+              texto={"+"}
+              callBack={addSerie}
+            />
           </div>
-          <label htmlFor="repeEjercicio">Repeticioes {countRepes}</label>
-          <input
-            type="range"
-            id="repeEjercicio"
-            defaultValue={1}
-            min={1}
-            max={20}
-            onChange={(e) => setCountRepes(e.target.valueAsNumber)}
-          />
+          <Repeticiones setCountRepes={setCountRepes} countRepes={countRepes} />
         </div>
       </div>
     </>
