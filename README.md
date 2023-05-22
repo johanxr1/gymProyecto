@@ -13,3 +13,5 @@ Posible: Lista con zonas a ejercitar, cuando se le da hay una lista de maquinas 
 ### Elementos contenidos
 
 - ViteJs
+- TypeScript
+- Base de datos (aun por decidirse)
