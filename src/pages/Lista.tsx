@@ -1,12 +1,19 @@
+import { Link } from "react-router-dom";
+
 function Lista() {
+  var arregloListaPecho = [
+    "Press de banca",
+    "Press inclinada",
+    "Paralelas",
+    "apertura",
+  ];
   return (
     <>
-      <h1>Lista</h1>
+      <h1>Pecho</h1>
       <ul className="tx">
-        <li>Ejercicio 1</li>
-        <li>Ejercicio 2</li>
-        <li>Ejercicio 3</li>
-        <li>Ejercicio 4</li>
+        {arregloListaPecho.map((item, i) => (
+          <li key={i}> {<Link to={"ejercicio/" + i}>{item}</Link>}</li>
+        ))}
       </ul>
     </>
   );

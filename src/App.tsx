@@ -56,7 +56,11 @@ function App() {
               callBack={addSerie}
             />
           </div>
-          <Repeticiones setCountRepes={setCountRepes} countRepes={countRepes} />
+          <Repeticiones
+            texto={"Repeticiones"}
+            setCountRepes={setCountRepes}
+            countRepes={countRepes}
+          />
         </div>
       </div>
     </>
