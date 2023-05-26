@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Lista({ arregloLista, titulo, pagina }: any, subpagina: boolean) {
+function Lista({ arregloLista, titulo, pagina, subpagina }: any) {
   return (
     <>
       <h1>{titulo}</h1>
@@ -9,7 +9,10 @@ function Lista({ arregloLista, titulo, pagina }: any, subpagina: boolean) {
           <li key={i}>
             {" "}
             {
-              <Link to={pagina + "/" + (subpagina == true ? i : "")}>
+              <Link
+                to={pagina + "/" + (subpagina ? item : "")}
+                state={{ ejercicio: item }}
+              >
                 {item}
               </Link>
             }

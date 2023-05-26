@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import "./App.css";
 import Repeticiones from "./components/Repeticiones";
 import BotonSerie from "./components/BotonSerie";
 import PesoInput from "./components/pesoInput";
 
 function App() {
+  let { state } = useLocation();
   const [countSeries, setCountSeries] = useState(1);
   const [countRepes, setCountRepes] = useState(1);
   var valoresEjercicio: any[] = [];
@@ -21,16 +23,15 @@ function App() {
 
   return (
     <>
-      <h1>Lista de ejercicios</h1>
+      <h1>{state.ejercicio || "Ejercicio 1"}</h1>
       <div className="card">
-        <p>Ejercicio N1</p>
         <div className="wrapper">
           <label htmlFor="nombreEjercicio">Nombre del ejercicio</label>
           <input
             id="nombreEjercicio"
             ref={nombreRef}
             type="text"
-            defaultValue={"Ejercicio 1"}
+            defaultValue={state.ejercicio || "Ejercicio 1"}
           />
           <PesoInput
             pesoRef={pesoRef}

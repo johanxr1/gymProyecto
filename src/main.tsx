@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
-import Elementos from "./pages/Elementos.tsx";
+import { Elementos, Bloques } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,11 @@ const router = createBrowserRouter([
     element: <Elementos />,
   },
   {
-    path: "ejercicio/:id",
+    path: "cuerpo/:parte",
+    element: <Bloques />,
+  },
+  {
+    path: "cuerpo/:parte/ejercicio/:id",
     element: <App />,
   },
 ]);
